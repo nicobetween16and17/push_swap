@@ -12,21 +12,18 @@
 
 #include "push_swap.h"
 #include <stdio.h>
-int main(void)
-{
-	int	i;
-	t_list	*start;
 
-	start = new(0, NULL, NULL);
-	i = 0;
-	while (++i < 10)
+int main(int ac, char **av)
+{
+	t_list *a;
+	t_list *b;
+	int		i;
+
+	i = -1;
+	if (ac == 1)
+		return (0);
+	while (av[++i])
 	{
-		printf("adding...\n");
-		add_back(&start, new(i, NULL, get_last(start)));
-	}
-	while (start->next)
-	{
-		printf("%d\n", start->nb);
-		start = start->next;
+
 	}
 }

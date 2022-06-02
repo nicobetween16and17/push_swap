@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-t_list	*new(int nb, t_list *next, t_list *previous)
+t_list	*get_new(int nb, t_list *next, t_list *previous)
 {
 	t_list	*new;
 
@@ -51,18 +51,10 @@ void	add_back(t_list **start, t_list *new)
 
 void	swap(t_list *swap1, t_list *swap2)
 {
-	t_list	*mem_previous;
-	t_list	*mem_next;
 	int		mem_nb;
 
-	mem_previous = swap1->previous;
-	mem_next = swap1->next;
 	mem_nb = swap1->nb;
-	swap1->previous = swap2->previous;
-	swap1->next = swap2->next;
 	swap1->nb = swap2->nb;
-	swap2->previous = mem_previous;
-	swap2->next = mem_next;
 	swap2->nb = mem_nb;
 }
 
