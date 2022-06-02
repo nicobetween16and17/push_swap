@@ -22,7 +22,7 @@ int main(void)
 	while (++i < 10)
 	{
 		printf("adding...\n");
-		add_back(start, new(i, NULL, get_last(start)));
+		add_back(&start, new(i, NULL, get_last(start)));
 	}
 	while (start->next)
 	{

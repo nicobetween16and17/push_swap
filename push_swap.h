@@ -21,8 +21,8 @@ typedef struct s_list
 }	t_list;
 
 t_list	*new(int nb, t_list *next, t_list *previous);
-void	add_front(t_list *start, t_list *new);
-void	add_back(t_list *start, t_list *new);
+void	add_front(t_list **start, t_list *new);
+void	add_back(t_list **start, t_list *new);
 void	swap(t_list *swap1, t_list *swap2);
 t_list	*get_last(t_list *start);
 void	free_lst(t_list *start);

@@ -25,19 +25,28 @@ t_list	*new(int nb, t_list *next, t_list *previous)
 	return (new);
 }
 
-void	add_front(t_list *start, t_list *new)
+t_list	*get_last(t_list *start)
 {
-	new->next = start;
+	if (!start)
+		return (start);
+	while (start->next)
+		start = start->next;
+	return (start);
 }
 
-void	add_back(t_list *start, t_list *new)
+void	add_front(t_list **start, t_list *new)
 {
-	t_list	*next;
+	new->next = *start;
+}
 
-	next = start->next;
-	if (next)
-		add_back(next, new);
-	start->next = start;
+void	add_back(t_list **start, t_list *new)
+{
+	t_list	*tmp;
+
+	if (*start == NULL)
+		*start = new;
+	tmp = get_last(*start);
+	tmp->next = new;
 }
 
 void	swap(t_list *swap1, t_list *swap2)
@@ -57,15 +66,6 @@ void	swap(t_list *swap1, t_list *swap2)
 	swap2->nb = mem_nb;
 }
 
-t_list	*get_last(t_list *start)
-{
-	t_list *last;
-
-	last = start;
-	while (last->next)
-		last = last->next;
-	return (last);
-}
 
 void	free_lst(t_list *start)
 {
