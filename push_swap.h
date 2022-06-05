@@ -14,6 +14,7 @@
 # define PUSH_SWAP_H
 # include <stdlib.h>
 # include <unistd.h>
+
 typedef struct s_list
 {
 	struct s_list	*next;

@@ -52,16 +52,6 @@ void	add_back(t_list **start, t_list *new)
 	tmp->next = new;
 }
 
-void	swap(t_list *swap1, t_list *swap2)
-{
-	int		mem_nb;
-
-	mem_nb = swap1->nb;
-	swap1->nb = swap2->nb;
-	swap2->nb = mem_nb;
-}
-
-
 void	free_lst(t_list *start)
 {
 	while (start->next)
