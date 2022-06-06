@@ -28,12 +28,25 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9e1c83c8-5fff-431a-8746-57077ccadef6" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/push_swap.iml" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/Makefile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ft_printf/Makefile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ft_printf/ft_print_ptr.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ft_printf/ft_printf.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ft_printf/ft_printf.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ft_printf/ft_printhex.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ft_printf/ft_utils.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/get_next_line.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/get_next_line_utils.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/a.out" beforeDir="false" afterPath="$PROJECT_DIR$/a.out" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/a.out" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/checker_Mac" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/checker_linux" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.c" beforeDir="false" afterPath="$PROJECT_DIR$/main.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ope.c" beforeDir="false" afterPath="$PROJECT_DIR$/ope.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ope2.c" beforeDir="false" afterPath="$PROJECT_DIR$/ope2.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ope3.c" beforeDir="false" afterPath="$PROJECT_DIR$/ope3.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/push_swap.h" beforeDir="false" afterPath="$PROJECT_DIR$/push_swap.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils.c" beforeDir="false" afterPath="$PROJECT_DIR$/utils.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/utils2.c" beforeDir="false" afterPath="$PROJECT_DIR$/utils2.c" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -65,6 +78,19 @@
     <property name="cidr.known.project.marker" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_package_manager_path" value="npm" />
+    <property name="settings.editor.selected.configurable" value="preferences.editor" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="GradleAppRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" PASS_PARENT_ENVS_2="true">
+      <method v="2">
+        <option name="com.jetbrains.cidr.cpp.gradle.execution.GradleNativeBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -81,11 +107,15 @@
       <workItem from="1654336767439" duration="515000" />
       <workItem from="1654362976549" duration="647000" />
       <workItem from="1654419628126" duration="599000" />
+      <workItem from="1654502575293" duration="23557000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="UnknownFeatures">
+    <option featureType="com.intellij.fileTypeFactory" implementationName="Makefile" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -100,14 +130,23 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="412" y="500" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1654246618988">
-      <screen x="0" y="23" width="2560" height="1337" />
+    <state x="464" y="564" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1654526723609">
+      <screen x="0" y="23" width="2880" height="1517" />
     </state>
     <state x="412" y="500" key="#com.intellij.fileTypes.FileTypeChooser/0.23.2560.1337@0.23.2560.1337" timestamp="1654246618988" />
-    <state x="1640" y="23" width="1240" height="1511" key="dock-window-1" timestamp="1654363674326">
+    <state x="464" y="564" key="#com.intellij.fileTypes.FileTypeChooser/0.23.2880.1517@0.23.2880.1517" timestamp="1654526723609" />
+    <state x="417" y="527" key="IDE.errors.dialog" timestamp="1654512477858">
+      <screen x="0" y="23" width="2880" height="1517" />
+    </state>
+    <state x="417" y="527" key="IDE.errors.dialog/0.23.2880.1517@0.23.2880.1517" timestamp="1654512477858" />
+    <state x="338" y="427" key="SettingsEditor" timestamp="1654527492318">
+      <screen x="0" y="23" width="2880" height="1517" />
+    </state>
+    <state x="338" y="427" key="SettingsEditor/0.23.2880.1517@0.23.2880.1517" timestamp="1654527492318" />
+    <state x="1634" y="25" width="1246" height="1510" key="dock-window-1" timestamp="1654519915048">
       <screen x="0" y="23" width="2880" height="1517" />
     </state>
     <state x="1388" y="23" width="1102" height="1331" key="dock-window-1/0.23.2560.1337@0.23.2560.1337" timestamp="1654246674086" />
-    <state x="1640" y="23" width="1240" height="1511" key="dock-window-1/0.23.2880.1517@0.23.2880.1517" timestamp="1654363674326" />
+    <state x="1634" y="25" width="1246" height="1510" key="dock-window-1/0.23.2880.1517@0.23.2880.1517" timestamp="1654519915048" />
   </component>
 </project>

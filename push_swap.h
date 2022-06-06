@@ -12,8 +12,9 @@
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
-# include <stdlib.h>
-# include <unistd.h>
+#include "get_next_line.h"
+#include "Libft/libft.h"
+#include "ft_printf/ft_printf.h"
 
 typedef struct s_list
 {
@@ -29,11 +30,11 @@ void	swap(t_list *swap1, t_list *swap2);
 t_list	*get_last(t_list *start);
 void	free_lst(t_list *start);
 t_list	*get_new(int nb, t_list *next, t_list *previous);
-int		ft_atoi(const char *str);
-char	**ft_split(char const *s, char c);
-int		ft_isdigit(int c);
-int		ft_strncmp(const char *s1, const char *s2, size_t n);
-size_t	ft_strlcpy(char *dst, const char *src, size_t size);
-size_t	ft_strlen(const char *s);
+t_list	*get_stack(char **av, int i, int j);
+void	fill_stack(t_list **a, char **av, int i, int j);
+void	rotate(t_list **list, int sens);
+void	push(t_list **list, t_list **list2);
+void	display_list(t_list *a);
+int		is_sorted(t_list *b, t_list *b2);
 
 #endif

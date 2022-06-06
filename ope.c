@@ -36,7 +36,14 @@ t_list	*get_last(t_list *start)
 
 void	add_front(t_list **start, t_list *new)
 {
-	new->next = *start;
+	if (*start)
+	{
+		(*start)->previous = new;
+		new->next = (*start);
+		return ;
+	}
+	*start = new;
+	new->next = NULL;
 }
 
 void	add_back(t_list **start, t_list *new)
