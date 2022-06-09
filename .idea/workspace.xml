@@ -28,19 +28,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9e1c83c8-5fff-431a-8746-57077ccadef6" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Makefile" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ft_printf/Makefile" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ft_printf/ft_print_ptr.c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ft_printf/ft_printf.c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ft_printf/ft_printf.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ft_printf/ft_printhex.c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ft_printf/ft_utils.c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/get_next_line.c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/get_next_line_utils.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/a.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/checker_Mac" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/checker_linux" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/Makefile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/checker" beforeDir="false" afterPath="$PROJECT_DIR$/checker" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/checker.c" beforeDir="false" afterPath="$PROJECT_DIR$/checker.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.c" beforeDir="false" afterPath="$PROJECT_DIR$/main.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ope.c" beforeDir="false" afterPath="$PROJECT_DIR$/ope.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ope2.c" beforeDir="false" afterPath="$PROJECT_DIR$/ope2.c" afterDir="false" />
@@ -107,7 +98,12 @@
       <workItem from="1654336767439" duration="515000" />
       <workItem from="1654362976549" duration="647000" />
       <workItem from="1654419628126" duration="599000" />
-      <workItem from="1654502575293" duration="23557000" />
+      <workItem from="1654502575293" duration="23927000" />
+      <workItem from="1654589024651" duration="18064000" />
+      <workItem from="1654624959783" duration="4192000" />
+      <workItem from="1654675249895" duration="29657000" />
+      <workItem from="1654761758529" duration="11468000" />
+      <workItem from="1654782244832" duration="2009000" />
     </task>
     <servers />
   </component>
@@ -143,10 +139,15 @@
       <screen x="0" y="23" width="2880" height="1517" />
     </state>
     <state x="338" y="427" key="SettingsEditor/0.23.2880.1517@0.23.2880.1517" timestamp="1654527492318" />
-    <state x="1634" y="25" width="1246" height="1510" key="dock-window-1" timestamp="1654519915048">
+    <state x="1625" y="23" width="1246" height="1510" key="dock-window-1" timestamp="1654785086736">
       <screen x="0" y="23" width="2880" height="1517" />
     </state>
-    <state x="1388" y="23" width="1102" height="1331" key="dock-window-1/0.23.2560.1337@0.23.2560.1337" timestamp="1654246674086" />
-    <state x="1634" y="25" width="1246" height="1510" key="dock-window-1/0.23.2880.1517@0.23.2880.1517" timestamp="1654519915048" />
+    <state x="1596" y="23" width="964" height="1336" key="dock-window-1/0.23.2560.1337@0.23.2560.1337" timestamp="1654675880866" />
+    <state x="1625" y="23" width="1246" height="1510" key="dock-window-1/0.23.2880.1517@0.23.2880.1517" timestamp="1654785086736" />
+    <state x="521" y="369" width="670" height="676" key="search.everywhere.popup" timestamp="1654770426658">
+      <screen x="0" y="23" width="2880" height="1517" />
+    </state>
+    <state x="463" y="328" key="search.everywhere.popup/0.23.2560.1337@0.23.2560.1337" timestamp="1654630461932" />
+    <state x="521" y="369" width="670" height="676" key="search.everywhere.popup/0.23.2880.1517@0.23.2880.1517" timestamp="1654770426658" />
   </component>
 </project>

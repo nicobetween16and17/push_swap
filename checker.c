@@ -89,6 +89,8 @@ int	main(int ac, char **av)
 	if (ac != 2)
 		return (1);
 	a = get_stack(av, 0, 0);
+	if (contain_duplicates(a))
+		return (ft_printf("contain duplicates\n"));
 	b = NULL;
 	stdin = get_next_line(0);
 	while (stdin)

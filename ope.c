@@ -50,13 +50,14 @@ void	add_back(t_list **start, t_list *new)
 {
 	t_list	*tmp;
 
-	if ((*start) == NULL)
+	if (*start == NULL)
 	{
 		*start = new;
 		return ;
 	}
 	tmp = get_last(*start);
 	tmp->next = new;
+	new->next = NULL;
 }
 
 void	free_lst(t_list *start)

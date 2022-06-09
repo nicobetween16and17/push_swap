@@ -15,13 +15,12 @@
 //yo supp ca un jour
 void	display_list(t_list *a)
 {
-	int	stop;
-
-	stop = 0;
+	if (a && a->previous == NULL)
+		ft_printf("[X]");
+	else if (a)
+		ft_printf("!%d!", a->previous->nb);
 	while (a)
 	{
-		if (a->previous == NULL && !stop++)
-			ft_printf("[X]");
 		ft_printf("[%d]", a->nb);
 		a = a->next;
 	}
@@ -58,23 +57,30 @@ void	reverse(t_list **list)
 	start = *list;
 	while (*list && (*list)->next)
 		*list = (*list)->next;
-	(*list)->previous->next = (*list)->next;
-	add_front(&start, *list);
-	if (start->previous)
-		*list = start->previous;
-	(*list)->previous = NULL;
+	if (start == *list)
+		return ;
+	if ((*list) && (*list)->previous)
+		(*list)->previous->next = NULL;
+	if (*list)
+		(*list)->previous = NULL;
+	if (*list)
+		(*list)->next = start;
+	put_previous(list);
 }
 
 void	rotate(t_list **list, int sens)
 {
 	t_list	*start;
 
+	if (size(*list) == 2)
+		swap(*list, (*list)->next);
+	if (size(*list) == 2)
+		return ;
 	if (!(*list) || !(*list)->next)
 		return ;
 	start = (*list)->next;
 	if (sens)
 	{
-		ft_printf("1\n");
 		reverse(list);
 		return ;
 	}
@@ -82,4 +88,5 @@ void	rotate(t_list **list, int sens)
 	(*list)->next = NULL;
 	add_back(&start, *list);
 	(*list) = start;
+	put_previous(list);
 }

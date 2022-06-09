@@ -22,6 +22,22 @@ void	fill_stack(t_list **a, char **av, int i, int j)
 	free(av);
 }
 
+void	put_previous(t_list **a)
+{
+	t_list	*tmp;
+	t_list	*start;
+
+	start = *a;
+	tmp = *a;
+	while ((*a)->next)
+	{
+		*a = (*a)->next;
+		(*a)->previous = tmp;
+		tmp = *a;
+	}
+	*a = start;
+}
+
 t_list	*get_stack(char **av, int i, int j)
 {
 	t_list	*a;
@@ -37,6 +53,7 @@ t_list	*get_stack(char **av, int i, int j)
 			fill_stack(&a, ft_split(av[i], ' '), -1, -1);
 		j = 0;
 	}
+	put_previous(&a);
 	return (a);
 }
 
@@ -46,8 +63,6 @@ int	is_sorted(t_list *b, t_list *b2)
 
 	if (b2 != NULL)
 		return (0);
-	else
-		display_list(b2);
 	current = b->nb;
 	while (b && b->next)
 	{
@@ -57,5 +72,24 @@ int	is_sorted(t_list *b, t_list *b2)
 			return (0);
 		b = b->next;
 	}
+	if (current > b->nb)
+		return (0);
 	return (1);
+}
+
+int contain_duplicates(t_list *a)
+{
+	int current;
+	if (a)
+		current = a->nb;
+	else
+		return (0);
+	while (a->next)
+	{
+		if (current == a->next->nb)
+			return (1);
+		current = a->next->nb;
+		a = a->next;
+	}
+	return (0);
 }
