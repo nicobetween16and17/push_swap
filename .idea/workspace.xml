@@ -27,19 +27,7 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9e1c83c8-5fff-431a-8746-57077ccadef6" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/Makefile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/checker" beforeDir="false" afterPath="$PROJECT_DIR$/checker" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/checker.c" beforeDir="false" afterPath="$PROJECT_DIR$/checker.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.c" beforeDir="false" afterPath="$PROJECT_DIR$/main.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ope.c" beforeDir="false" afterPath="$PROJECT_DIR$/ope.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ope2.c" beforeDir="false" afterPath="$PROJECT_DIR$/ope2.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ope3.c" beforeDir="false" afterPath="$PROJECT_DIR$/ope3.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/push_swap.h" beforeDir="false" afterPath="$PROJECT_DIR$/push_swap.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils.c" beforeDir="false" afterPath="$PROJECT_DIR$/utils.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils2.c" beforeDir="false" afterPath="$PROJECT_DIR$/utils2.c" afterDir="false" />
-    </list>
+    <list default="true" id="9e1c83c8-5fff-431a-8746-57077ccadef6" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -76,13 +64,6 @@
       <recent name="$PROJECT_DIR$" />
     </key>
   </component>
-  <component name="RunManager">
-    <configuration default="true" type="GradleAppRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" PASS_PARENT_ENVS_2="true">
-      <method v="2">
-        <option name="com.jetbrains.cidr.cpp.gradle.execution.GradleNativeBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
-      </method>
-    </configuration>
-  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -103,7 +84,11 @@
       <workItem from="1654624959783" duration="4192000" />
       <workItem from="1654675249895" duration="29657000" />
       <workItem from="1654761758529" duration="11468000" />
-      <workItem from="1654782244832" duration="2009000" />
+      <workItem from="1654782244832" duration="2032000" />
+      <workItem from="1654851835621" duration="492000" />
+      <workItem from="1654858352327" duration="1252000" />
+      <workItem from="1654938045476" duration="462000" />
+      <workItem from="1655032600795" duration="597000" />
     </task>
     <servers />
   </component>
