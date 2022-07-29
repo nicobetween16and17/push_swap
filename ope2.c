@@ -15,10 +15,7 @@
 //yo supp ca un jour
 void	display_list(t_list *a)
 {
-	if (a && a->previous == NULL)
-		ft_printf("[X]");
-	else if (a)
-		ft_printf("!%d!", a->previous->nb);
+	ft_printf("[X]");
 	while (a)
 	{
 		ft_printf("[%d]", a->nb);
@@ -27,66 +24,60 @@ void	display_list(t_list *a)
 	ft_printf("[X]\n");
 }
 
-void	swap(t_list *swap1, t_list *swap2)
+void	swap(t_list **list)
 {
 	int	mem_nb;
+	int mem_pos;
 
-	mem_nb = swap1->nb;
-	swap1->nb = swap2->nb;
-	swap2->nb = mem_nb;
+	if (size(*list) < 2)
+		return ;
+	mem_pos = (*list)->pos;
+	mem_nb = (*list)->nb;
+	(*list)->nb = (*list)->next->nb;
+	(*list)->next->nb = mem_nb;
+	(*list)->pos = (*list)->next->pos;
+	(*list)->next->pos = mem_pos;
 }
 
 void	push(t_list **list, t_list **list2)
 {
-	int		i;
 	t_list	*start;
 
 	start = (*list)->next;
 	add_front(list2, *list);
 	(*list) = start;
-	if ((*list))
-		(*list)->previous = NULL;
-	if ((*list2)->previous)
-		(*list2) = (*list2)->previous;
 }
 
-void	reverse(t_list **list)
-{
-	t_list	*start;
-
-	start = *list;
-	while (*list && (*list)->next)
-		*list = (*list)->next;
-	if (start == *list)
-		return ;
-	if ((*list) && (*list)->previous)
-		(*list)->previous->next = NULL;
-	if (*list)
-		(*list)->previous = NULL;
-	if (*list)
-		(*list)->next = start;
-	put_previous(list);
-}
-
-void	rotate(t_list **list, int sens)
+void	reverse_rotate(t_list **list)
 {
 	t_list	*start;
 
 	if (size(*list) == 2)
-		swap(*list, (*list)->next);
-	if (size(*list) == 2)
-		return ;
-	if (!(*list) || !(*list)->next)
+		swap(list);
+	if (size(*list) <= 2)
 		return ;
 	start = (*list)->next;
-	if (sens)
-	{
-		reverse(list);
-		return ;
-	}
-	(*list)->next->previous = NULL;
 	(*list)->next = NULL;
 	add_back(&start, *list);
 	(*list) = start;
-	put_previous(list);
+}
+
+void	rotate(t_list **list)
+{
+	int mem;
+	t_list *to_move;
+	t_list *start;
+
+	start = *list;
+	if (size(*list) == 2)
+		swap(list);
+	if (size(*list) <= 2)
+		return ;	
+	to_move = get_last(*list);
+	while((*list)->next->next)
+		(*list) = (*list)->next;
+	(*list)->next = NULL;
+	add_front(&start, to_move);
+	(*list) = to_move;
+	
 }

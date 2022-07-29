@@ -4,8 +4,7 @@ NAME	= push_swap
 
 all:	$(NAME)
 
-$(NAME)	:.
-
+$(NAME)	:
 	gcc main.c ope.c ope2.c ope3.c utils.c utils2.c Libft/libft.a ft_printf/libftprintf.a -o $(NAME)
 
 c	:	$(NAME_CHECKER)
@@ -16,4 +15,3 @@ $(NAME_CHECKER)	:
 fclean	:
 				rm -rf checker push_swap
 				make
-				make c

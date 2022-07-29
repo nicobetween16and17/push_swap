@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-t_list	*get_new(int nb, t_list *next, t_list *previous)
+t_list	*get_new(int nb, t_list *next)
 {
 	t_list	*new;
 
@@ -21,7 +21,7 @@ t_list	*get_new(int nb, t_list *next, t_list *previous)
 		return (NULL);
 	new->nb = nb;
 	new->next = next;
-	new->previous = previous;
+	new->pos = -1;
 	return (new);
 }
 
@@ -36,14 +36,8 @@ t_list	*get_last(t_list *start)
 
 void	add_front(t_list **start, t_list *new)
 {
-	if (*start)
-	{
-		(*start)->previous = new;
-		new->next = (*start);
-		return ;
-	}
+	new->next = (*start);
 	*start = new;
-	new->next = NULL;
 }
 
 void	add_back(t_list **start, t_list *new)

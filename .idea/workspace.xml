@@ -27,7 +27,26 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
+<<<<<<< HEAD
     <list default="true" id="9e1c83c8-5fff-431a-8746-57077ccadef6" name="Default Changelist" comment="" />
+=======
+    <list default="true" id="9e1c83c8-5fff-431a-8746-57077ccadef6" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Libft/a.out" beforeDir="false" afterPath="$PROJECT_DIR$/Libft/a.out" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/a.out" beforeDir="false" afterPath="$PROJECT_DIR$/a.out" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/push_swap/Libft" beforeDir="false" afterPath="$PROJECT_DIR$/push_swap/Libft" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/push_swap/Libft/a.out" beforeDir="false" afterPath="$PROJECT_DIR$/push_swap/Libft/a.out" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/push_swap/Libft/libft-war-machine" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/push_swap/Libft/libft.a" beforeDir="false" afterPath="$PROJECT_DIR$/push_swap/Libft/libft.a" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/push_swap/Libft/libft.h" beforeDir="false" afterPath="$PROJECT_DIR$/push_swap/Libft/libft.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/push_swap/Libft/tester" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/push_swap/Libft/tester-unit" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/push_swap/a.out" beforeDir="false" afterPath="$PROJECT_DIR$/push_swap/a.out" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/push_swap/checker" beforeDir="false" afterPath="$PROJECT_DIR$/push_swap/checker" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/push_swap/push_swap" beforeDir="false" />
+    </list>
+>>>>>>> 220af8cf32ab2a7677b70fc358e96c7caeab6d11
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -37,7 +56,7 @@
     <option name="formatViaClangd" value="false" />
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/push_swap/Libft" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -55,14 +74,26 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="cf.first.check.clang-format" value="false" />
     <property name="cidr.known.project.marker" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/push_swap" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="preferences.editor" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+<<<<<<< HEAD
       <recent name="$PROJECT_DIR$" />
     </key>
+=======
+      <recent name="\\wsl$\Ubuntu-20.04\home\peach\projects\push_swap\push_swap" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="GradleAppRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" PASS_PARENT_ENVS_2="true">
+      <method v="2">
+        <option name="com.jetbrains.cidr.cpp.gradle.execution.GradleNativeBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+>>>>>>> 220af8cf32ab2a7677b70fc358e96c7caeab6d11
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -73,6 +104,7 @@
       <option name="presentableId" value="Default" />
       <updated>1654177268740</updated>
       <workItem from="1654177269867" duration="6330000" />
+<<<<<<< HEAD
       <workItem from="1654199551014" duration="6672000" />
       <workItem from="1654254314142" duration="528000" />
       <workItem from="1654266291290" duration="1015000" />
@@ -89,6 +121,13 @@
       <workItem from="1654858352327" duration="1252000" />
       <workItem from="1654938045476" duration="462000" />
       <workItem from="1655032600795" duration="597000" />
+=======
+      <workItem from="1654199551014" duration="7021000" />
+      <workItem from="1654360022507" duration="699000" />
+      <workItem from="1654591796136" duration="4000" />
+      <workItem from="1655248263487" duration="422000" />
+      <workItem from="1655460873615" duration="865000" />
+>>>>>>> 220af8cf32ab2a7677b70fc358e96c7caeab6d11
     </task>
     <servers />
   </component>

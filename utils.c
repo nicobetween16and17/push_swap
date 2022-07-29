@@ -15,28 +15,13 @@
 void	fill_stack(t_list **a, char **av, int i, int j)
 {
 	while (av[++i])
-		add_back(a, get_new(ft_atoi(av[i]), NULL, get_last(*a)));
+		add_back(a, get_new(ft_atoi(av[i]), NULL));
 	i = -1;
 	while (av[++i])
 		free(av[i]);
 	free(av);
 }
 
-void	put_previous(t_list **a)
-{
-	t_list	*tmp;
-	t_list	*start;
-
-	start = *a;
-	tmp = *a;
-	while ((*a)->next)
-	{
-		*a = (*a)->next;
-		(*a)->previous = tmp;
-		tmp = *a;
-	}
-	*a = start;
-}
 
 t_list	*get_stack(char **av, int i, int j)
 {
@@ -48,12 +33,11 @@ t_list	*get_stack(char **av, int i, int j)
 		while (av[i][j])
 			j++;
 		if (j == 1)
-			add_back(&a, get_new(ft_atoi(av[i]), NULL, get_last(a)));
+			add_back(&a, get_new(ft_atoi(av[i]), NULL));
 		else
 			fill_stack(&a, ft_split(av[i], ' '), -1, -1);
 		j = 0;
 	}
-	put_previous(&a);
 	return (a);
 }
 
