@@ -109,6 +109,21 @@ int get_longest_suite(t_list *a)
 	return (save[1]);
 }
 
+int get_last_element_of_suite_b(t_list *a)
+{
+	int pos;
+
+	pos = a->pos;
+	while (a->next)
+	{
+		if (a->next->pos != a->pos - 1)
+			return (apos);
+		pos = a->pos;
+		a = a->next;
+	}
+	return (pos);
+}
+
 int get_nearest_suite(t_list *a)
 {
 	while(a)
@@ -119,3 +134,120 @@ int get_nearest_suite(t_list *a)
 	}
 	return (-1);
 }
+
+int is_already_well_placed(t_list *a, int pos)
+{
+	int previous_pos;
+	int next_pos;
+	t_list *start;
+
+	previous_pos = -1;
+	start = a;
+	while (a->next)
+	{
+		if (a->next->pos == a->pos + 1)
+			previous_pos = a->next->pos;
+		a = a->next;
+	}
+	next_pos = get_nearest_suite(start);
+	if (previous_pos > next_pos)
+		return (pos < next_pos && next_pos > 0);
+	return (pos > previous_pos && pos < next_pos && next_pos > 0);
+}
+
+int need_swap(t_list *a)
+{
+	if (size(a) <= 2 || get_nearest_suite(a) == a->pos)
+		return (0);
+	if (get_last(a)->pos == a->pos - 1)
+		return (0);
+	if (a->next->next && a->pos == a->next->next->pos - 1)
+		return (1);
+	if (get_last(a)->pos == a->next->pos - 1)
+		return (1);
+	return (0);
+}
+
+int	everything_well_placed(t_list *a)
+{
+	int pos;
+
+	pos = -1;
+	while (a)
+	{
+		if (get_nearest_suite(a) != a->pos && pos + 1 != a->pos
+			&& a->next && a->next->pos < a->pos)
+			return (0);
+		pos = a->pos;
+		a = a->next;
+	}
+	return (1); 
+}
+
+int need_push(t_list *a, t_list *b)
+{
+	ft_printf("%d =? %d\n", get_last_element_of_suite_b(b) - 1, get_last(a)->pos);
+	return (a && b && get_last_element_of_suite_b(b) == get_last(a)->pos + 1);
+}
+
+int	is_a_starting_suite(t_list *a)
+{
+	return ((a->pos == get_nearest_suite(a)
+		&& get_last(a)->pos != a->pos - 1) || size(a) == 1);
+}
+
+int get_last_suite(t_list *c)
+{
+	int pos;
+
+	pos = -1;
+	while(c)
+	{
+		if (c->pos == get_nearest_suite(c) && (pos != c->pos - 1 || pos == -1))
+			pos = c->pos;
+		c = c->next;
+	}
+	return (pos);
+}
+//if type is 0 return a distance (number of rotation) else return a direction (-1 is backward and 1 forward)
+int delta_suite(t_list *a, int pos)
+{
+	int len;
+	int cpt;
+
+	cpt = 0;
+	len = size(a);
+	while (a && a->pos + 1 == pos && ++cpt)
+		a = a->next;
+	return (len / 2 <= cpt);
+}
+
+int direction(t_list *b)
+{
+	int len;
+	int cpt;
+
+	cpt = 0;
+	len = size(b);
+	while (b && b->nb != get_biggest(b) && ++cpt)
+		b = b->next;
+	return (len / 2 <= cpt);
+}
+int aftermath_rotations(t_list *a, t_list *b)
+{
+	if (need_push(a, b))
+		return (4);
+	else if (b && b->nb == get_biggest(b))
+	{
+		if (delta_suite(a, get_last_element_of_suite_b(b)))
+			return (6);
+		else
+			return (9);
+	}
+	else if (direction(b))
+		return (7);
+	return (10);
+}
+
+
+

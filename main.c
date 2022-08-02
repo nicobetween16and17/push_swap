@@ -54,41 +54,59 @@ void	select_op(int op, t_list **a, t_list **b)
 #include <stdio.h>
 int	sort_next(t_list *a, t_list *b)
 {
+	static int test;
+	if (!test)
+		test = 1;
+	if (test++ > 50)
+		exit(0);
 	int	res;
-	if (!is_inverse_sorted(b))
+	if (size(b) > 2 && !is_soft_invert_sorted(b, 0))
 	{
-		if (b->next && b->next->nb < b->nb)
-			return (2);
-		else
-			
-
+		if (b->next->pos > b->pos)
+		{
+			if (need_swap(a))
+				return (3);
+			else
+				return (2);
+		}
+		else if (a->pos != get_nearest_suite(a))
+			return(11);
+		return (10);
 	}
-	else if (a->pos != get_nearest_suite(a))
-		return (5);
-	else
+	else if (everything_well_placed(a))
+		return (aftermath_rotations(a, b));
+	else if (need_swap(a))
+		return (1);
+	else if (is_already_well_placed(a, a->pos))
 		return (9);
-	
-	return (res);
+	else if (a->pos != get_nearest_suite(a) && get_last(a)->pos + 1 != a->pos)
+		return (5);
+	return (9);
 }
-
+//TODO NEED_PUSH FONTIONNE PAS JE CROIS 
 int	main(int ac, char **av)
 {
 	t_list	*a;
 	t_list	*b;
 	int		op;
-
+	static int	nb;
+	if (!nb)
+		nb = 1;
 	b = NULL;
 	if (ac == 1)
 		return (0);
 	a = get_stack(av, 0, 0);
 	assign_stack(&a, get_smallest(a));
-	while (!(is_sorted(a, b))) {
+	while (!(is_sorted(a, b)))
+	{
 		op = sort_next(a, b);
 		select_op(op, &a, &b);
+		ft_printf("--------------%d-------------\n", nb++);
 		ft_printf("a ->");
 		display_list(a);
 		ft_printf("b ->");
 		display_list(b);
+		ft_printf("----------------------------\n");
 	}
 	ft_printf("a ->");
 	display_list(a);

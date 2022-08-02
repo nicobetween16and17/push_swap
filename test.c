@@ -42,16 +42,16 @@ int main(void)
 	}
 	write(1,"\n",1);
 	t_list *iss;
-	add_back(&iss, get_new(4, NULL));
-	add_back(&iss, get_new(3, NULL));
-	add_back(&iss, get_new(2, NULL));
-	add_back(&iss, get_new(1, NULL));
-	add_back(&iss, get_new(9, NULL));
-	add_back(&iss, get_new(8, NULL));
-	add_back(&iss, get_new(7, NULL));
 	add_back(&iss, get_new(6, NULL));
-	add_back(&iss, get_new(5, NULL));
+	add_back(&iss, get_new(15, NULL));
+	add_back(&iss, get_new(14, NULL));
+	add_back(&iss, get_new(13, NULL));
+	add_back(&iss, get_new(12, NULL));
+	// add_back(&iss, get_new(8, NULL));
+	// add_back(&iss, get_new(7, NULL));
+	// add_back(&iss, get_new(6, NULL));
+	// add_back(&iss, get_new(5, NULL));
 	ft_printf("------------------------\n");
 	display_list(iss);
-	ft_printf("is it inverse soft sorted mes couilles en ski ? -> %d\n", is_soft_invert_sorted(iss));
+	ft_printf("is it inverse soft sorted mes couilles en ski ? -> %d\n", is_soft_invert_sorted(iss, 0));
 }

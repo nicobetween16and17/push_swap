@@ -44,6 +44,14 @@ int		is_inverse_sorted(t_list *b);
 int		get_biggest(t_list *lst);
 int		is_soft_sorted(t_list *b, int sens);
 void assign_stack(t_list **list, int smallest);
-int is_soft_invert_sorted(t_list *b);
-
+int is_soft_invert_sorted(t_list *b, int rdy);
+int get_nearest_suite(t_list *a);
+int is_already_well_placed(t_list *a, int pos);
+int need_swap(t_list *a);
+int need_push(t_list *a, t_list *b);
+int	everything_well_placed(t_list *a);
+int	is_a_starting_suite(t_list *a);
+int delta_suite(t_list *a, int pos);
+int get_last_suite(t_list *c);
+int aftermath_rotations(t_list *a, t_list *b);
 #endif

@@ -59,36 +59,40 @@ int	is_inverse_sorted(t_list *b)
 	}
 	return (1);
 }
-
-int is_soft_invert_sorted(t_list *b)
+/*-----*
+* Le premier while stop directement si la cible est au bout
+* sinon incremente jusqu'a trouver le max puis, compare un par un les nombre adjacents
+* ensuite on repart du debut en comparant depuis le dernier et ce, jusqu'au maximum
+* si la suite de comparaison prouve que nb1 > nb2 > nb3 > ... > nbfin alors retourne vrai
+* si une comparaison est fausse, renvoit faux
+*------*/
+int is_soft_invert_sorted(t_list *b, int rdy)
 {
 	int		bik;
 	int		current;
 	t_list	*start;
 
-	current = bik;
 	start = b;
 	bik = get_biggest(b);
-	ft_printf("bikkest is %d\n", bik);
-	while (b->next)
+	current = bik;
+	while (b->next && get_last(b)->nb != bik)
 	{
-
 		if (b->nb == bik)
-			
-		if (current < b->next->nb && ft_printf("1 current %d and next %d\n", current, b->next->nb))
-		{
+			rdy++;
+		if (current < b->next->nb )
 			return (0);
+		if (rdy)
 			current = b->next->nb;
-		}
 		b = b->next;
 	}
 	while (start && start->nb != bik)
 	{
-		if (start->next && start->next->nb != bik && current < start->next->nb && ft_printf("2 current %d and next %d\n", current, start->next->nb))
+		if (start->next && start->nb != bik && current < start->nb)
 			return (0);
-		current = b->next->nb;
+		current = start->nb;
 		start = start->next;
 	}
 	return (1);
 }
+
 
