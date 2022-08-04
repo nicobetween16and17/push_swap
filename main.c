@@ -54,13 +54,16 @@ void	select_op(int op, t_list **a, t_list **b)
 #include <stdio.h>
 int	sort_next(t_list *a, t_list *b)
 {
+	static int go;
 	static int test;
 	if (!test)
 		test = 1;
-	if (test++ > 50)
+	if (test++ > 30)
 		exit(0);
 	int	res;
-	if (size(b) > 2 && !is_soft_invert_sorted(b, 0))
+	if (b && a && b->pos == a->pos -1)
+		return (4);
+	else if (size(b) > 2 && !is_soft_invert_sorted(b, 0))
 	{
 		if (b->next->pos > b->pos)
 		{
@@ -69,12 +72,21 @@ int	sort_next(t_list *a, t_list *b)
 			else
 				return (2);
 		}
+		else if (get_last(b)->pos < b->pos)
+		{
+			if (a->pos != get_nearest_suite(a))
+				return (8);
+			return (7);
+		}
 		else if (a->pos != get_nearest_suite(a))
 			return(11);
 		return (10);
 	}
-	else if (everything_well_placed(a))
+	else if (everything_well_placed(a) || go)
+	{
+		go =1;
 		return (aftermath_rotations(a, b));
+	}
 	else if (need_swap(a))
 		return (1);
 	else if (is_already_well_placed(a, a->pos))

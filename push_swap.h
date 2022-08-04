@@ -53,5 +53,7 @@ int	everything_well_placed(t_list *a);
 int	is_a_starting_suite(t_list *a);
 int delta_suite(t_list *a, int pos);
 int get_last_suite(t_list *c);
+int find_position_b(t_list *b, int pos);
+int *to_push(t_list *a, int i, int j, int nb_pos);
 int aftermath_rotations(t_list *a, t_list *b);
 #endif

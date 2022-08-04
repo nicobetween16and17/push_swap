@@ -109,7 +109,7 @@ int get_longest_suite(t_list *a)
 	return (save[1]);
 }
 
-int get_last_element_of_suite_b(t_list *a)
+int get_last_element_of_suite_b(t_list *a, t_list *b)
 {
 	int pos;
 
@@ -117,10 +117,12 @@ int get_last_element_of_suite_b(t_list *a)
 	while (a->next)
 	{
 		if (a->next->pos != a->pos - 1)
-			return (apos);
-		pos = a->pos;
+			return (pos);
+		pos = a->next->pos;
 		a = a->next;
 	}
+	if (!pos)
+		return (size(a) + size(b));
 	return (pos);
 }
 
@@ -150,6 +152,8 @@ int is_already_well_placed(t_list *a, int pos)
 		a = a->next;
 	}
 	next_pos = get_nearest_suite(start);
+	if (start->nb == get_biggest(start) && start->next->nb == get_smallest(start))
+		return (1);
 	if (previous_pos > next_pos)
 		return (pos < next_pos && next_pos > 0);
 	return (pos > previous_pos && pos < next_pos && next_pos > 0);
@@ -171,7 +175,9 @@ int need_swap(t_list *a)
 int	everything_well_placed(t_list *a)
 {
 	int pos;
+	t_list *start;
 
+	start = a;
 	pos = -1;
 	while (a)
 	{
@@ -186,8 +192,8 @@ int	everything_well_placed(t_list *a)
 
 int need_push(t_list *a, t_list *b)
 {
-	ft_printf("%d =? %d\n", get_last_element_of_suite_b(b) - 1, get_last(a)->pos);
-	return (a && b && get_last_element_of_suite_b(b) == get_last(a)->pos + 1);
+	ft_printf("%d =? %d:%d\n", get_last_element_of_suite_b(b, a) , get_last(a)->nb, get_last(a)->pos + 1);
+	return (a && b && get_last_element_of_suite_b(b, a) == get_last(a)->pos + 1);
 }
 
 int	is_a_starting_suite(t_list *a)
@@ -233,13 +239,24 @@ int direction(t_list *b)
 		b = b->next;
 	return (len / 2 <= cpt);
 }
+int find_position_b(t_list *b, int pos)
+{
+	int len;
+	int cpt;
+
+	cpt = 0;
+	len = size(b);
+	while (b && b->nb > pos && ++cpt)
+		b = b->next;
+	return (len / 2 <= cpt);
+}
 int aftermath_rotations(t_list *a, t_list *b)
 {
 	if (need_push(a, b))
 		return (4);
 	else if (b && b->nb == get_biggest(b))
 	{
-		if (delta_suite(a, get_last_element_of_suite_b(b)))
+		if (delta_suite(a, get_last_element_of_suite_b(b, a)))
 			return (6);
 		else
 			return (9);
@@ -247,6 +264,63 @@ int aftermath_rotations(t_list *a, t_list *b)
 	else if (direction(b))
 		return (7);
 	return (10);
+}
+int *to_push(t_list *a, int i, int j, int nb_pos)
+{
+	int *positions;
+	int max;
+	t_list *start;
+	int *cpy;
+	int last_pos;
+
+	last_pos = size(a);
+	start = a;
+	nb_pos = 0;
+	positions = malloc(sizeof(int) * (size(a) + 1));
+	cpy = malloc(sizeof(int) * (size(a) + 1));
+	while (++j < size(a))
+	{
+		ft_printf("~~~~~%d~~~~\n", j);
+		i = 0;
+		max = 0;
+		positions[i++] = a->pos;
+		while (a)
+		{
+			if (!max && a->pos < last_pos && ft_printf("!added %d\n", a->pos))
+				positions[i++] = a->pos;
+			else
+				last_pos = a->pos;
+			if (((a->pos > start->pos) || (a->pos > last_pos)) && ft_printf("?added %d\n", a->pos))
+				positions[i++] = a->pos;
+			else
+				last_pos = a->pos;
+			if (ft_printf("looking at %d\n", a->pos) && a->pos == size(start) - 1)
+			{
+				max++;
+				last_pos = 0;
+			}
+			positions[i] = -1;
+			a = a->next;
+		}
+		a = start;
+		if (nb_pos < i)
+		{
+			int p = -1;
+			ft_printf("-------------\n");
+			while (++p < i)
+				ft_printf("[%d]", positions[p]);
+			ft_printf("------------\n");
+			cpy = positions;
+			nb_pos = i;
+		}
+		rotate(&a);
+		start = a;
+	}
+	rotate(&start);
+	a = start;
+	positions[i] = -1;
+	free(positions);
+	return (cpy);
 }
 
 

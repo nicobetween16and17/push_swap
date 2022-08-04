@@ -38,7 +38,7 @@ int	correct_output(char *output, int size)
 		return (11);
 	return (0);
 }
-
+/*test*/
 void	do_op2(t_list **a, t_list **b, int op)
 {
 	if (op == 6)
