@@ -265,61 +265,77 @@ int aftermath_rotations(t_list *a, t_list *b)
 		return (7);
 	return (10);
 }
+void display(int *lst)
+{
+	int i = -1;
+	ft_printf("------------\n");
+	while (lst[++i] != -1)
+		ft_printf("[\e[0;31m%d\e[0m]", lst[i]);
+	ft_printf("-------------\n");
+}
+static int size_list(int *list, int max)
+{
+	int i;
+	ft_printf("2enter\n");
+	i = -1;
+	while (list && list[++i] >= 0 && i < max - 1)
+		i++;
+	ft_printf("2exit\n");
+	return (i);
+}
+static int *current(t_list *a, t_list *start, int i, int max)
+{
+	int *positions;
+
+	positions = malloc(sizeof(int) * (size(a) + 1));
+	positions[i++] = a->pos;
+	while (a)
+	{
+		if (!max && positions[i - 1] < a->pos)
+			positions[i++] = a->pos;
+		if (max && positions[i - 1] > a->pos)
+			positions[i++] = a->pos;
+		if (a->pos == size(start) - 1)
+			max++;
+		positions[i] = -1;
+		a = a->next;
+	}
+	positions[i] = -1;
+	return (positions);
+}
+static void copy_list(int *cpy, int *from)
+{
+	int	i;
+
+	i = -1;
+
+	while (from && from[++i] >= 0)
+		cpy[i] = from[i];
+	cpy[i] = -1;
+
+}
+
 int *to_push(t_list *a, int i, int j, int nb_pos)
 {
 	int *positions;
-	int max;
-	t_list *start;
 	int *cpy;
-	int last_pos;
 
-	last_pos = size(a);
-	start = a;
 	nb_pos = 0;
-	positions = malloc(sizeof(int) * (size(a) + 1));
 	cpy = malloc(sizeof(int) * (size(a) + 1));
 	while (++j < size(a))
 	{
-		ft_printf("~~~~~%d~~~~\n", j);
-		i = 0;
-		max = 0;
-		positions[i++] = a->pos;
-		while (a)
+		positions = current(a, a, 0, 0);
+		if (nb_pos < size_list(positions, size(a)))
 		{
-			if (!max && a->pos < last_pos && ft_printf("!added %d\n", a->pos))
-				positions[i++] = a->pos;
-			else
-				last_pos = a->pos;
-			if (((a->pos > start->pos) || (a->pos > last_pos)) && ft_printf("?added %d\n", a->pos))
-				positions[i++] = a->pos;
-			else
-				last_pos = a->pos;
-			if (ft_printf("looking at %d\n", a->pos) && a->pos == size(start) - 1)
-			{
-				max++;
-				last_pos = 0;
-			}
-			positions[i] = -1;
-			a = a->next;
+			nb_pos = size_list(positions, size(a));
+			copy_list(cpy, positions);
+			free(positions);
 		}
-		a = start;
-		if (nb_pos < i)
-		{
-			int p = -1;
-			ft_printf("-------------\n");
-			while (++p < i)
-				ft_printf("[%d]", positions[p]);
-			ft_printf("------------\n");
-			cpy = positions;
-			nb_pos = i;
-		}
+		else if (positions)
+			free(positions);
 		rotate(&a);
-		start = a;
 	}
-	rotate(&start);
-	a = start;
-	positions[i] = -1;
-	free(positions);
+	rotate(&a);
 	return (cpy);
 }
 
