@@ -123,13 +123,13 @@ int sort(t_list *a, t_list *b, int **elim)
 		else
 			return (6);
 	}
-	else if (a->pos == a->next->next->pos - 1 || get_last(a)->pos == a->next->pos - 1 || a->pos - 1 == a->next->pos)
-		return (1);
 	else if (b && (b->pos == a->pos - 1 || b->pos == get_last(a)->pos + 1))
 	{
 		change_list(elim, b->pos);
 		return (4);
 	}
+	else if (a->pos == a->next->next->pos - 1 || get_last(a)->pos == a->next->pos - 1 || a->pos - 1 == a->next->pos)
+		return (1);
 	else if (!lcontain(*elim, a->pos))
 		return (5);
 	return (6);
