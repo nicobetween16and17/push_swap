@@ -113,6 +113,78 @@ int direction_to_pos(t_list *a, int pos)
 	}
 	return (i < size(a) / 2);
 }
+int get_next_push(t_list *a, int **elim)
+{
+	int cpt;
+	int delta;
+	int pos;
+
+	cpt = 0;
+	delta = 2147483647;
+	pos = -1;
+	while (*elim && a)
+	{
+		cpt++;
+		if (lcontain(*elim, a->pos) && (delta > cpt || delta > size(a) - cpt))
+		{
+			pos = a->pos;
+			delta = cpt;
+			if (size(a) / 2 < cpt)
+				delta = size(a) - cpt;
+		}
+		a = a->next;
+	}
+	return (pos);
+}
+int already_sort(t_list *a)
+{
+	return (get_last(a)->pos + 1 == a->pos || a->next->pos - 1 == a->pos);//9(8 + 1) 8 7(8 - 1)
+}
+int best_pos(t_list *a, int pos, int i, int len)
+{
+	int smol[2];
+	int bik[2];
+
+	smol[0] = size(a);
+	bik[0] = size(a);
+	while (a)
+	{
+		if (a->pos == pos - 1)
+			smol[0] = i;
+		if (a->pos == pos + 1)
+			bik[0] = i;
+		if (a->pos == pos - 1)
+			smol[1] = a->pos;
+		if (a->pos == pos + 1)
+			bik[1] = a->pos;
+		i++;
+		a = a->next;
+	}
+	if (smol[0] < len && smol[0] > len / 2)
+		smol[0] = len - smol[0];
+	if (bik[0] < len && bik[0] > len / 2)
+		bik[0] = len - bik[0];
+	if (bik[0] < smol[0])
+		return (bik[1]);
+	return (smol[1]);
+}
+
+int is_near(int pos, t_list *a)
+{
+	int i;
+	int len;
+
+	len = size(a);
+	i = 0;
+	while(a)
+	{
+		if (a->next->pos == pos)
+			return (i < 2 || len - i < 2);
+		i++;
+		a = a->next;
+	}
+	return (0);
+}
 /*************************************************/
 int sort(t_list *a, t_list *b, int **elim)
 {
@@ -123,16 +195,22 @@ int sort(t_list *a, t_list *b, int **elim)
 		else
 			return (6);
 	}
-	else if (b && (b->pos == a->pos - 1 || b->pos == get_last(a)->pos + 1))
-	{
-		change_list(elim, b->pos);
+	else if ((b && (b->pos + 1 == a->pos || b->pos - 1 == get_last(a)->pos)))
 		return (4);
-	}
-	else if (a->pos == a->next->next->pos - 1 || get_last(a)->pos == a->next->pos - 1 || a->pos - 1 == a->next->pos)
-		return (1);
-	else if (!lcontain(*elim, a->pos))
+	else if (*elim && !lcontain(*elim, a->pos) )
 		return (5);
-	return (6);
+	else if (b && is_near(best_pos(a, b->pos, 0, size(a)),a))
+	{
+		if (direction_to_pos(a, best_pos(a, b->pos, 0, size(a))))
+			return (6);
+		else
+			return (9);
+	}
+	else if (*elim && direction_to_pos(a, get_next_push(a, elim)))
+		return (9);
+	else if (*elim)
+		return (6);
+	return (1);
 }
 /*************************************************/
 int main(int ac, char **av)
@@ -159,10 +237,11 @@ int main(int ac, char **av)
 	ft_printf("\n");
 	int l = 0;
 	display_pos(a);
+	display1(pushb);
 	while (!is_sorted(a, b) && ++l)
 	{
 		ft_printf("-------%d-------\n", l);
-		if (l > 50)
+		if (l > 15)
 			exit(0);
 		select_op(sort(a,b, &pushb), &a, &b);
 		ft_printf("a:\n");
