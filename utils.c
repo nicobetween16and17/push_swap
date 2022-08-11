@@ -22,7 +22,6 @@ void	fill_stack(t_list **a, char **av, int i, int j)
 	free(av);
 }
 
-
 t_list	*get_stack(char **av, int i, int j)
 {
 	t_list	*a;

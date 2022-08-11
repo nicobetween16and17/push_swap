@@ -16,10 +16,12 @@ void	select_op2(t_list **a, t_list **b, int op)
 		reverse_rotate(a);
 		reverse_rotate(b);
 	}
+	ft_printf("\e[0m");
 }
 
 void	select_op(int op, t_list **a, t_list **b)
 {
+	ft_printf("\e[0;35m");
 	if (op == 1 && ft_printf("sa\n"))
 		swap(a);
 	if (op == 2 && ft_printf("sb\n"))
@@ -106,7 +108,7 @@ int direction_to_pos(t_list *a, int pos)
 	int	i;
 
 	i = 0;
-	while (a)
+	while (a && a->pos != pos)
 	{
 		i++;
 		a = a->next;
@@ -142,75 +144,281 @@ int already_sort(t_list *a)
 }
 int best_pos(t_list *a, int pos, int i, int len)
 {
-	int smol[2];
-	int bik[2];
+	int	proximity;
+	int	value;
 
-	smol[0] = size(a);
-	bik[0] = size(a);
+	value = -1;
+	proximity = len;
 	while (a)
 	{
-		if (a->pos == pos - 1)
-			smol[0] = i;
 		if (a->pos == pos + 1)
-			bik[0] = i;
-		if (a->pos == pos - 1)
-			smol[1] = a->pos;
-		if (a->pos == pos + 1)
-			bik[1] = a->pos;
+		{
+			if (i < len / 2 && i < proximity)
+			{
+				value = a->pos;
+				proximity = i;
+			}
+			if (i >= len / 2 && len - i < proximity)
+			{
+				value = a->pos;
+				proximity = len - i;
+			}
+		}
 		i++;
 		a = a->next;
 	}
-	if (smol[0] < len && smol[0] > len / 2)
-		smol[0] = len - smol[0];
-	if (bik[0] < len && bik[0] > len / 2)
-		bik[0] = len - bik[0];
-	if (bik[0] < smol[0])
-		return (bik[1]);
-	return (smol[1]);
+	return (value);
 }
 
 int is_near(int pos, t_list *a)
 {
-	int i;
-	int len;
+	int	i;
+	int	len;
 
 	len = size(a);
 	i = 0;
-	while(a)
+	if (pos == -1)
+		return (0);
+	while (a)
 	{
-		if (a->next->pos == pos)
-			return (i < 2 || len - i < 2);
+		if (a->pos == pos && (i <=2 || len - i <= 2))
+			return (1);
+		else if (a->pos == pos)
+			return (0);
 		i++;
 		a = a->next;
 	}
 	return (0);
 }
+int checklast(int *last, int new)
+{
+	if (new == 6 && *last == 9)
+		return (*last);
+	if (new == 9 && *last == 6)
+		return (*last);
+	*last = new;
+	return (new);
+}
+
+int absolute_pos(int pos, t_list *b, t_list *start)
+{
+	int biggest_smol;
+
+	biggest_smol = -1;
+	while (b)
+	{
+		if (b->pos < pos && b->pos >= biggest_smol)
+			biggest_smol = b->pos;
+		b = b->next;
+	}
+	if (biggest_smol == -1)
+	{
+		b = start;
+		while (b)
+		{
+			if (b->nb == get_biggest(start))
+				biggest_smol = b->pos;
+			b = b->next;
+		}
+	}
+	return (biggest_smol);
+}
+int nothing_to_push(int *e, t_list *a)
+{
+	while (a)
+	{
+		if (!lcontain(e, a->pos))
+			return (0);
+		a = a->next;
+	}
+	return (1);
+}
+int list_contain(t_list *a, int pos)
+{
+	while (a)
+	{
+		if (a->pos == pos)
+			return (1);
+		a = a->next;
+	}
+	return (0);
+}
+int get_biggest_pos(t_list *a)
+{
+	int current;
+
+	current = 0;
+	while (a)
+	{
+		if (a->pos > current)
+			current = a->pos;
+		a = a->next;
+
+	}
+	return (current);
+}
+t_list *lst_cpy(t_list *a)
+{
+	t_list *cpy;
+
+	cpy = malloc(sizeof(t_list));
+	cpy->pos = a->pos;
+	cpy->next = NULL;
+	cpy->nb = a->nb;
+	return (cpy);
+}
+t_list *lst_dup(t_list *a)
+{
+	t_list *cpy = NULL;
+
+	while (a)
+	{
+		add_back(&cpy, lst_cpy(a));
+		a = a->next;
+	}
+	return (cpy);
+}
+void free_list(t_list **a)
+{
+	int i = 0;
+	t_list *start = *a;
+	while (size(start) > 0)
+	{
+		while ((*a)->next)
+		{
+			ft_printf("%d\n", i++);
+			*a = (*a)->next;
+		}
+		free(*a);
+	}
+
+
+}
+int get_result(t_list **cp_a, t_list **cp_b, int *elim, int res)
+{
+	int start;
+
+	start = res;
+	while (!nothing_to_push(elim, *cp_a))
+	{
+
+		if (!lcontain(elim, (*cp_a)->pos))
+		{
+			if (size(*cp_b) < 2)
+				push(cp_a, cp_b);
+			else if (*cp_b && size(*cp_b) >= 2 && (*cp_b)->pos == absolute_pos((*cp_b)->pos, *cp_b, *cp_b))
+				return (5);
+			else if (*cp_b && (size(*cp_b) >= 2 && (*cp_b)->pos < absolute_pos((*cp_a)->pos, *cp_b, *cp_b)
+						   || (get_biggest(*cp_b) < (*cp_a)->pos)))
+				return (7);
+			return (10);
+		}
+
+		else
+			rotate(cp_a);
+		if (!start)
+			res++;
+		else
+			res--;
+	}
+	return (res);
+
+}
+int best_step_z(t_list *a, int *elim)
+{
+	t_list *cp_a;
+	t_list *cp_b;
+	int res;
+
+	res = 0;
+	cp_a = lst_dup(a);
+	cp_b = NULL;
+	res = get_result(&cp_a, &cp_b, elim, res);
+	//free_list(&cp_a);
+	//free_list(&cp_b);
+	cp_a = lst_dup(a);
+	cp_b = NULL;
+	res = get_result(&cp_a, &cp_b, elim, res);
+	//free_list(&cp_a);
+	//free_list(&cp_b);
+	ft_printf("%d\n",res);
+	if (res <= 0)
+		return (6);
+	return (9);
+}
+int next_not_contained(t_list *a, int *elim, int best_rotation)
+{
+	int	res;
+
+	res = 0;
+	if (!lcontain(elim, a->pos))
+		return (a->pos);
+	while (a)
+	{
+		if (best_rotation == 9 && !lcontain(elim, a->pos))
+			return (a->pos);
+		else if (!lcontain(elim, a->pos))
+			res = a->pos;
+		a = a->next
+	}
+	return (res)
+}
 /*************************************************/
 int sort(t_list *a, t_list *b, int **elim)
 {
-	if (!b && is_kinda_sorted(a))
+	static int step;
+	static int best_step_zero;
+
+	if (!best_step_zero)
+		best_step_zero = best_step_z(a, *elim);
+	if (!step)
 	{
-		if (direction_to_pos(a, 0))
-			return (9);
-		else
-			return (6);
+		ft_printf("STEP %d\n", step);
+		if (nothing_to_push(*elim, a))
+			step = 1;
+		if (!lcontain(*elim, a->pos))
+		{
+			if (!b || (size(b) < 2))
+				return (5);
+			if (b && size(b) >= 2 && b->pos == absolute_pos(a->pos, b, b))
+				return (5);
+			else if (b && (size(b) >= 2 && b->pos < absolute_pos(a->pos, b, b)
+						   || (get_biggest(b) < a->pos)))
+				return (7);
+			return (10);
+		}
+		if (b->pos < )
+			return (best_step_zero + 2);
+		return (best_step_zero);
 	}
-	else if ((b && (b->pos + 1 == a->pos || b->pos - 1 == get_last(a)->pos)))
-		return (4);
-	else if (*elim && !lcontain(*elim, a->pos) )
-		return (5);
-	else if (b && is_near(best_pos(a, b->pos, 0, size(a)),a))
+	if (step == 1)
 	{
-		if (direction_to_pos(a, best_pos(a, b->pos, 0, size(a))))
+		ft_printf("STEP %d\n", step);
+		if (b->nb != get_biggest(b))
+			return (7);
+		if (ft_printf("%d > %d\n",get_biggest_pos(a),get_biggest_pos(b)) && get_biggest_pos(a) > get_biggest_pos(b) && a->pos != get_biggest_pos(a))
 			return (6);
-		else
-			return (9);
+		if (ft_printf("hey\n") && get_biggest_pos(a) < get_biggest(b) && a->nb != get_smallest(a))
+			return (6);
+		step = 2;
 	}
-	else if (*elim && direction_to_pos(a, get_next_push(a, elim)))
-		return (9);
-	else if (*elim)
-		return (6);
-	return (1);
+	if (step == 2)
+	{
+		ft_printf("STEP %d\n", step);
+		if (b && a->nb == get_smallest(a) || b->pos == a->pos - 1)
+			return (4);
+		else if (b)
+			return (6);
+		else if (!b && is_kinda_sorted(a))
+		{
+			ft_printf("IS SORTED\n");
+			if (direction_to_pos(a, 0))
+				return (9);
+			else
+				return (6);
+		}
+	}
+	return (6);
 }
 /*************************************************/
 int main(int ac, char **av)
@@ -218,7 +426,6 @@ int main(int ac, char **av)
 	t_list	*a;
 	t_list	*b;
 
-	int		op;
 	static int	nb;
 	if (!nb)
 		nb = 1;
@@ -241,7 +448,7 @@ int main(int ac, char **av)
 	while (!is_sorted(a, b) && ++l)
 	{
 		ft_printf("-------%d-------\n", l);
-		if (l > 15)
+		if (l > 7000)
 			exit(0);
 		select_op(sort(a,b, &pushb), &a, &b);
 		ft_printf("a:\n");

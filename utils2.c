@@ -276,11 +276,10 @@ void display(int *lst)
 static int size_list(int *list, int max)
 {
 	int i;
-	ft_printf("2enter\n");
-	i = -1;
-	while (list && list[++i] >= 0 && i < max - 1)
+
+	i = 0;
+	while (list && list[i] >= 0 && i < max)
 		i++;
-	ft_printf("2exit\n");
 	return (i);
 }
 static int *current(t_list *a, t_list *start, int i, int max)
@@ -293,9 +292,9 @@ static int *current(t_list *a, t_list *start, int i, int max)
 	{
 		if (!max && positions[i - 1] < a->pos)
 			positions[i++] = a->pos;
-		if (max && positions[i - 1] > a->pos)
+		if (max && ((positions[i - 1] > a->pos && a->pos < positions[0]) || (positions[i - 1] == size(a) && a->pos < positions[0])))
 			positions[i++] = a->pos;
-		if (a->pos == size(start) - 1)
+		if (a->pos == size(start))
 			max++;
 		positions[i] = -1;
 		a = a->next;
