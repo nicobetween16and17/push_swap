@@ -278,74 +278,7 @@ t_list *lst_dup(t_list *a)
 	}
 	return (cpy);
 }
-void free_list(t_list **a)
-{
-	int i = 0;
-	t_list *start = *a;
-	while (size(start) > 0)
-	{
-		while ((*a)->next)
-		{
-			ft_printf("%d\n", i++);
-			*a = (*a)->next;
-		}
-		free(*a);
-	}
 
-
-}
-int get_result(t_list **cp_a, t_list **cp_b, int *elim, int res)
-{
-	int start;
-
-	start = res;
-	while (!nothing_to_push(elim, *cp_a))
-	{
-
-		if (!lcontain(elim, (*cp_a)->pos))
-		{
-			if (size(*cp_b) < 2)
-				push(cp_a, cp_b);
-			else if (*cp_b && size(*cp_b) >= 2 && (*cp_b)->pos == absolute_pos((*cp_b)->pos, *cp_b, *cp_b))
-				return (5);
-			else if (*cp_b && (size(*cp_b) >= 2 && (*cp_b)->pos < absolute_pos((*cp_a)->pos, *cp_b, *cp_b)
-						   || (get_biggest(*cp_b) < (*cp_a)->pos)))
-				return (7);
-			return (10);
-		}
-
-		else
-			rotate(cp_a);
-		if (!start)
-			res++;
-		else
-			res--;
-	}
-	return (res);
-
-}
-int best_step_z(t_list *a, int *elim)
-{
-	t_list *cp_a;
-	t_list *cp_b;
-	int res;
-
-	res = 0;
-	cp_a = lst_dup(a);
-	cp_b = NULL;
-	res = get_result(&cp_a, &cp_b, elim, res);
-	//free_list(&cp_a);
-	//free_list(&cp_b);
-	cp_a = lst_dup(a);
-	cp_b = NULL;
-	res = get_result(&cp_a, &cp_b, elim, res);
-	//free_list(&cp_a);
-	//free_list(&cp_b);
-	ft_printf("%d\n",res);
-	if (res <= 0)
-		return (6);
-	return (9);
-}
 int next_not_contained(t_list *a, int *elim, int best_rotation)
 {
 	int	res;
@@ -359,18 +292,65 @@ int next_not_contained(t_list *a, int *elim, int best_rotation)
 			return (a->pos);
 		else if (!lcontain(elim, a->pos))
 			res = a->pos;
-		a = a->next
+		a = a->next;
 	}
-	return (res)
+	return (res);
+}
+int mooves(t_list *b, int pos)
+{
+	int i;
+	int len;
+
+	len = size(b);
+	i = 0;
+	while (b)
+	{
+		if (b->pos == pos)
+		{
+			if (i < len / 2)
+				return (len - i);
+			return (i);
+		}
+		i++;
+		b = b->next;
+	}
+	return (i);
+}
+int prediction(int pos, t_list *a, t_list *b, int direction)
+{
+	static int prediction;
+	int	moves;
+	int i;
+	int res[2];
+
+	i = 0;
+	if (prediction)
+	{
+		prediction--;
+		return (prediction)
+	}
+	moves = mooves(b, absolute_pos(a->pos, b, b));
+	if (direction)
+		res[0] = get_last(a);
+	else
+		res[0] = a->next->pos;
+	while (a && i < mooves)
+	{
+		if (!direction)
+		{
+			if ()
+		}
+		a = a->next;
+	}
+
+
 }
 /*************************************************/
+//TODO PREDICTION, YOU NEED TO FIND IF THERE IS A NUMBER MORE FITTING TO PUSH IF YOU FOLLOW B MOVEMENTS WITH A WITHIN X MOVEMENTS
 int sort(t_list *a, t_list *b, int **elim)
 {
 	static int step;
-	static int best_step_zero;
-
-	if (!best_step_zero)
-		best_step_zero = best_step_z(a, *elim);
+	/*
 	if (!step)
 	{
 		ft_printf("STEP %d\n", step);
@@ -387,8 +367,6 @@ int sort(t_list *a, t_list *b, int **elim)
 				return (7);
 			return (10);
 		}
-		if (b->pos < )
-			return (best_step_zero + 2);
 		return (best_step_zero);
 	}
 	if (step == 1)
@@ -417,6 +395,15 @@ int sort(t_list *a, t_list *b, int **elim)
 			else
 				return (6);
 		}
+	}*/
+	if (step == 0)
+	{
+		if (!b || size(b) < 2)
+			return (5);
+		else if (b && b->pos == absolute_pos(a->pos, b, b))
+			return (5);
+		else
+			if ()
 	}
 	return (6);
 }
@@ -448,12 +435,13 @@ int main(int ac, char **av)
 	while (!is_sorted(a, b) && ++l)
 	{
 		ft_printf("-------%d-------\n", l);
-		if (l > 7000)
+		if (l > 70000)
 			exit(0);
 		select_op(sort(a,b, &pushb), &a, &b);
-		ft_printf("a:\n");
-		display_list(a);
-		ft_printf("b:\n");
-		display_list(b);
+
 	}
+	ft_printf("a:\n");
+	display_list(a);
+	ft_printf("b:\n");
+	display_list(b);
 }
