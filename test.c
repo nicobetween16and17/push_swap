@@ -316,37 +316,60 @@ int mooves(t_list *b, int pos)
 	}
 	return (i);
 }
+int get_previous(t_list *a, int pos)
+{
+	int previous;
+
+	previous = -1;
+	while (a)
+	{
+		if (a->pos == pos)
+			return (previous);
+		previous = a->pos;
+		a = a->next;
+	}
+	return (-1);
+}
+int get_delta(int pos1, int pos2)
+{
+	int res;
+
+	res = pos1 - pos2;
+	if (res < 0)
+		res = -res;
+	return (res);
+}
+
 int prediction(int pos, t_list *a, t_list *b, int direction)
 {
 	static int prediction;
-	int	moves;
-	int i;
-	int res[2];
+	int res[4];
 
-	i = 0;
-	if (prediction)
-	{
-		prediction--;
-		return (prediction)
-	}
-	moves = mooves(b, absolute_pos(a->pos, b, b));
+	if (prediction && prediction--)
+		return (prediction);
+	res[3] = 0;
+	res[2] = mooves(b, absolute_pos(a->pos, b, b));
+	res[1] = 2147483647;
 	if (direction)
-		res[0] = get_last(a);
-	else
-		res[0] = a->next->pos;
-	while (a && i < mooves)
+		res[0] = get_last(a)->pos;
+	while (res[3]++ < res[2])
 	{
-		if (!direction)
+		if (direction)
+			res[0] = get_previous(a, res[0]);
+		else
 		{
-			if ()
+			a = a->next;
+			res[0] = a->pos;
 		}
-		a = a->next;
+		if (get_delta(pos, res[0]) < res[1])
+			res[1] = res[0];
+		if (res[1] == res[0])
+			prediction = res[3];
 	}
-
-
+	return (res[1]);
 }
 /*************************************************/
-//TODO PREDICTION, YOU NEED TO FIND IF THERE IS A NUMBER MORE FITTING TO PUSH IF YOU FOLLOW B MOVEMENTS WITH A WITHIN X MOVEMENTS
+//TODO PREDICTION, TEST IT AND MAKE IT 25 LINES
 int sort(t_list *a, t_list *b, int **elim)
 {
 	static int step;
@@ -402,8 +425,18 @@ int sort(t_list *a, t_list *b, int **elim)
 			return (5);
 		else if (b && b->pos == absolute_pos(a->pos, b, b))
 			return (5);
+		else if (b && (size(b) >= 2 && b->pos < absolute_pos(a->pos, b, b)
+			|| (get_biggest(b) < a->pos)))
+		{
+			if (prediction(a->pos), a, b, 0)
+				return (8);
+			else
+				return (7);
+		}
+		else if (prediction(a->pos, a, b, 1))
+			return (11);
 		else
-			if ()
+			return (10)
 	}
 	return (6);
 }
