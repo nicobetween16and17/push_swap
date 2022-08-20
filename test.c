@@ -340,6 +340,34 @@ int get_delta(int pos1, int pos2)
 	return (res);
 }
 
+int soft_sorted(t_list *a)
+{
+	int small;
+	int current;
+	t_list *start;
+
+	start = a;
+	current = get_smallest_pos(a);
+	small = current;
+	while (a && a->pos != small)
+		a = a->next;
+	a = a->next;
+	while (a)
+	{
+		if (a->pos != ++current)
+			return (0);
+		a = a->next;
+	}
+	a = start;
+	while (a && a->pos != small)
+	{
+		if (a->pos != ++current)
+			return (0);
+		a = a->next;
+	}
+	return (1);
+}
+
 int prediction(int pos, t_list *a, t_list *b, int direction)
 {
 	static int prediction;
@@ -373,6 +401,11 @@ int prediction(int pos, t_list *a, t_list *b, int direction)
 int sort(t_list *a, t_list *b, int **elim)
 {
 	static int step;
+	static int sort;
+	static int next;
+
+	if (!next && b && size(b) > 2)
+		next = absolute_pos(a->pos, b, b);
 	/*
 	if (!step)
 	{
@@ -419,16 +452,19 @@ int sort(t_list *a, t_list *b, int **elim)
 				return (6);
 		}
 	}*/
+	/*
 	if (step == 0)
 	{
+		if (soft_sorted(a))
+			step++;
 		if (!b || size(b) < 2)
 			return (5);
-		else if (b && b->pos == absolute_pos(a->pos, b, b))
+		else if (b && b->pos && !sort && ++sort)
 			return (5);
 		else if (b && (size(b) >= 2 && b->pos < absolute_pos(a->pos, b, b)
 			|| (get_biggest(b) < a->pos)))
 		{
-			if (prediction(a->pos), a, b, 0)
+			if (prediction(a->pos, a, b, 0))
 				return (8);
 			else
 				return (7);
@@ -436,7 +472,30 @@ int sort(t_list *a, t_list *b, int **elim)
 		else if (prediction(a->pos, a, b, 1))
 			return (11);
 		else
-			return (10)
+			return (10);
+	}*/
+	if (step == 0)
+	{
+		if (soft_sorted(a))
+			step++;
+		if (!b || size(b) < 2)
+			return (5);
+		if (a->pos == next)
+		{
+			next = 0;
+			return (5);
+		}
+		else if ()
+		{
+
+		}
+
+	}
+	else
+	{
+		display_list(a);
+		display_list(b);
+		exit(0);
 	}
 	return (6);
 }
@@ -453,7 +512,6 @@ int main(int ac, char **av)
 	if (ac == 1)
 		return (0);
 	a = get_stack(av, 0, 0);
-
 	assign_stack(&a, get_smallest(a));
 	display_list(a);
 	int *pushb = to_push(a, 0,0, size(a));
@@ -468,13 +526,13 @@ int main(int ac, char **av)
 	while (!is_sorted(a, b) && ++l)
 	{
 		ft_printf("-------%d-------\n", l);
-		if (l > 70000)
+		if (l > 10)
 			exit(0);
 		select_op(sort(a,b, &pushb), &a, &b);
-
+		ft_printf("a:\n");
+		display_list(a);
+		ft_printf("b:\n");
+		display_list(b);
 	}
-	ft_printf("a:\n");
-	display_list(a);
-	ft_printf("b:\n");
-	display_list(b);
+
 }

@@ -23,6 +23,7 @@ typedef struct s_list
 	int				pos;
 }	t_list;
 
+int	get_smallest_pos(t_list *lst);
 void	add_front(t_list **start, t_list *new);
 void	add_back(t_list **start, t_list *new);
 void	swap(t_list **list);

@@ -39,6 +39,20 @@ int	get_smallest(t_list *lst)
 	return (smallest);
 }
 
+int	get_smallest_pos(t_list *lst)
+{
+	int	smallest;
+
+	smallest = lst->pos;
+
+	while (lst)
+	{
+		lst = lst->next;
+		if (lst && smallest > lst->pos)
+			smallest = lst->pos;
+	}
+	return (smallest);
+}
 int	get_biggest(t_list *lst)
 {
 	int	biggest;
