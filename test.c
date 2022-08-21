@@ -104,22 +104,30 @@ int soft_sorted(t_list *a)
 int radix(int pos, int bit)
 {
 	int res;
+	int bitmax;
 
+	bitmax = bit;
 	res = pos / 2;
-	while (bit--)
+	ft_printf("[%d]\n", res);
+	while (bit)
+	{
+		bit--;
 		res /= 2;
-	res = res % 2;
-	return (res);
+	}
+	ft_printf("[%d]\n", res);
+	ft_printf("%d au %de bit %d et %d\n", pos, bitmax, res, res % 2);
+	return (res % 2);
 }
 /*************************************************/
-int sort(t_list *a, t_list *b, int size)
+int sort(t_list *a, t_list *b)
 {
 	static int bit;
 	static int step;
-	static int current
+	static int first;
+	static int position;
 
-	if (!current)
-		current = size;
+	if (is_kinda_sorted(a) && !b)
+		return (6);
 	if (step)
 	{
 		if (b)
@@ -128,22 +136,22 @@ int sort(t_list *a, t_list *b, int size)
 		{
 			step--;
 			bit++;
+			position = 0;
 		}
-
 	}
 	if (!step)
 	{
-		current--;
-		if (!current)
+		if (first && a->pos == first)
 			step++;
-		if (radix(a->pos, bit))
-			return (5);
-		else
+		if (!first && (!radix(a->pos, bit) || a->pos == position))
+			first = a->pos;
+		printf("%d != %d\n", a->pos, position);
+		if (!radix(a->pos, bit) || a->pos == position++)
 			return (6);
+		else
+			return (5);
 	}
-
-
-
+	return (1);
 }
 /*************************************************/
 int main(int ac, char **av)
@@ -160,21 +168,16 @@ int main(int ac, char **av)
 	a = get_stack(av, 0, 0);
 	assign_stack(&a, get_smallest(a));
 	display_list(a);
-	int *pushb = to_push(a, 0,0, size(a));
-	display_list(a);
 	int i = -1;
-	while (pushb[++i] >= 0)
-		ft_printf("[%d]", pushb[i]);
 	ft_printf("\n");
 	int l = 0;
 	display_pos(a);
-	display1(pushb);
-	while (!is_sorted(a, b) && ++l)
+	while (!is_sorted(a, b))
 	{
 		ft_printf("-------%d-------\n", l);
-		if (l > 10)
+		if (l++ > 150)
 			exit(0);
-		select_op(sort(a,b, &pushb), &a, &b);
+		select_op(sort(a, b), &a, &b);
 		ft_printf("a:\n");
 		display_list(a);
 		ft_printf("b:\n");

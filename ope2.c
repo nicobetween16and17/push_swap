@@ -18,7 +18,7 @@ void	display_list(t_list *a)
 	ft_printf("[X]");
 	while (a)
 	{
-		ft_printf("[\e[0;32m%d\e[0m]", a->nb);
+		ft_printf("[\e[0;32m%d\e[0m]", a->pos);
 		a = a->next;
 	}
 	ft_printf("[X]\n");
