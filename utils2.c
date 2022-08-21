@@ -71,16 +71,15 @@ int	get_biggest(t_list *lst)
 
 void assign_stack(t_list **list, int smallest)
 {
-	t_list	*start;
-	int		nb;
-	int		cpt;
+	t_list			*start;
+	int				nb;
+	static int		cpt;
 
-	cpt = 0;
 	nb = smallest;
 	start = *list;
 	while (cpt < size(start))
 	{
-		while(*list)
+		while (*list)
 		{
 			if ((*list)->nb == nb)
 				(*list)->pos = cpt++;	

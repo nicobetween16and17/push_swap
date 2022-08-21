@@ -43,7 +43,7 @@ void	select_op(int op, t_list **a, t_list **b)
 }
 
 
-int radix(int pos, int bit)
+int radix (int pos, int bit)
 {
 	while (bit)
 	{
@@ -140,8 +140,4 @@ int main(int ac, char **av)
 	assign_stack(&a, get_smallest(a));
 	while (!is_sorted(a, b))
 		select_op(sort(a, b), &a, &b);
-	/*ft_printf("a:\n");
-	display_list(a);
-	ft_printf("b:\n");
-	display_list(b);*/
 }
