@@ -12,22 +12,10 @@
 
 #include "push_swap.h"
 
-//yo supp ca un jour
-void	display_list(t_list *a)
-{
-	ft_printf("[X]");
-	while (a)
-	{
-		ft_printf("[\e[0;32m%d\e[0m]", a->pos);
-		a = a->next;
-	}
-	ft_printf("[X]\n");
-}
-
 void	swap(t_list **list)
 {
 	int	mem_nb;
-	int mem_pos;
+	int	mem_pos;
 
 	if (size(*list) < 2)
 		return ;
@@ -64,20 +52,18 @@ void	reverse_rotate(t_list **list)
 
 void	rotate(t_list **list)
 {
-	int mem;
-	t_list *to_move;
-	t_list *start;
+	t_list	*to_move;
+	t_list	*start;
 
 	start = *list;
 	if (size(*list) == 2)
 		swap(list);
 	if (size(*list) <= 2)
-		return ;	
+		return ;
 	to_move = get_last(*list);
-	while((*list)->next->next)
+	while ((*list)->next->next)
 		(*list) = (*list)->next;
 	(*list)->next = NULL;
 	add_front(&start, to_move);
 	(*list) = to_move;
-	
 }

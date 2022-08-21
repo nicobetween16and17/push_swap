@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-int radix (int pos, int bit)
+int	radix(int pos, int bit)
 {
 	while (bit)
 	{
@@ -22,7 +22,7 @@ int radix (int pos, int bit)
 	return (pos % 2);
 }
 
-int radix_fin(t_list *a, int bit)
+int	radix_fin(t_list *a, int bit)
 {
 	while (a)
 	{
@@ -33,21 +33,23 @@ int radix_fin(t_list *a, int bit)
 	return (1);
 }
 
-int get_dir(t_list *a, int pos, int size, int reset)
+int	get_dir(t_list *a, int pos, int size, int reset)
 {
-	static int res;
-	int i;
+	static int	res;
+	int			i;
 
 	if (reset)
+	{
 		res = 0;
+		return (1);
+	}
 	if (res)
 		return (res);
 	i = 0;
 	while (a)
 	{
-
 		if (a->pos == pos)
-			break;
+			break ;
 		i++;
 		a = a->next;
 	}
@@ -55,4 +57,17 @@ int get_dir(t_list *a, int pos, int size, int reset)
 	if (i <= size / 2)
 		res = 9;
 	return (res);
+}
+
+int	step_one(int *first, t_list *a, int bit, int *step)
+{
+	if (!(*first) && radix(a->pos, bit))
+		*first = a->pos;
+	if (radix_fin(a, bit))
+		(*step)++;
+	else if (radix(a->pos, bit))
+		return (9);
+	else
+		return (5);
+	return (0);
 }

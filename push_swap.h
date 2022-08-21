@@ -12,9 +12,9 @@
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
-#include "get_next_line.h"
-#include "Libft/libft.h"
-#include "ft_printf/ft_printf.h"
+# include "get_next_line.h"
+# include "Libft/libft.h"
+# include "ft_printf/ft_printf.h"
 
 typedef struct s_list
 {
@@ -37,8 +37,8 @@ void	reverse_rotate(t_list **list);
 void	push(t_list **list, t_list **list2);
 void	display_list(t_list *a);
 int		is_sorted(t_list *b, t_list *b2);
-int 	contain_duplicates(t_list *a);
-int 	size(t_list *lst);
+int		contain_duplicates(t_list *a);
+int		size(t_list *lst);
 int		get_smallest(t_list *lst);
 int		contain(t_list *a, int n);
 int		is_inverse_sorted(t_list *b);
@@ -48,4 +48,5 @@ void	assign_stack(t_list **list, int smallest);
 int		radix(int pos, int bit);
 int		radix_fin(t_list *a, int bit);
 int		get_dir(t_list *a, int pos, int size, int reset);
+int		step_one(int *first, t_list *a, int bit, int *step);
 #endif

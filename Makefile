@@ -5,7 +5,8 @@ NAME	= push_swap
 all:	$(NAME)
 
 $(NAME)	:
-	gcc main.c ope.c ope2.c ope3.c utils.c utils2.c Libft/libft.a ft_printf/libftprintf.a -o $(NAME)
+	cd Libft && make re && cd .. && cd ft_printf && make re && cd ..
+	gcc main.c ope.c ope2.c ope3.c utils.c utils2.c sort.c Libft/libft.a ft_printf/libftprintf.a -o $(NAME)
 
 c	:	$(NAME_CHECKER)
 

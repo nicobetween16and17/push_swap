@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
 void	select_op2(t_list **a, t_list **b, int op)
 {
 	if (op == 8 && ft_printf("rr\n"))
@@ -53,11 +54,18 @@ void	select_op(int op, t_list **a, t_list **b)
 	select_op2(a, b, op);
 }
 
-int sort(t_list *a, t_list *b)
+void	cycle_up(int *first, int *step, int *bit)
 {
-	static int bit;
-	static int step;
-	static int first;
+	*first = 0;
+	*step = 0;
+	(*bit) = *bit + 1;
+}
+
+int	sort(t_list *a, t_list *b)
+{
+	static int	bit;
+	static int	step;
+	static int	first;
 
 	if (step == 1)
 	{
@@ -66,35 +74,19 @@ int sort(t_list *a, t_list *b)
 		else
 			return (get_dir(a, first, size(a), 0));
 	}
-	if (step == 2)
+	if (step == 2 && get_dir(a, first, size(a), 1))
 	{
-		get_dir(a, first, size(a), 1);
 		if (b)
 			return (4);
 		else
-		{
-			first = 0;
-			step = 0;
-			bit++;
-		}
+			cycle_up(&first, &step, &bit);
 	}
 	if (!step)
-	{
-		if (radix_fin(a, bit))
-			step++;
-		else if (radix(a->pos, bit))
-		{
-			if (!first)
-				first = a->pos;
-			return (9);
-		}
-		else
-			return (5);
-	}
+		return (step_one(&first, a, bit, &step));
 	return (0);
 }
-/*************************************************/
-int main(int ac, char **av)
+
+int	main(int ac, char **av)
 {
 	t_list	*a;
 	t_list	*b;

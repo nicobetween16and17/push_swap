@@ -60,9 +60,10 @@ int	is_sorted(t_list *b, t_list *b2)
 	return (1);
 }
 
-int contain_duplicates(t_list *a)
+int	contain_duplicates(t_list *a)
 {
-	int current;
+	int	current;
+
 	if (a)
 		current = a->nb;
 	else

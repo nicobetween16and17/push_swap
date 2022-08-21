@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-int size(t_list *lst)
+int	size(t_list *lst)
 {
 	int	i;
 
@@ -44,7 +44,6 @@ int	get_smallest_pos(t_list *lst)
 	int	smallest;
 
 	smallest = lst->pos;
-
 	while (lst)
 	{
 		lst = lst->next;
@@ -53,6 +52,7 @@ int	get_smallest_pos(t_list *lst)
 	}
 	return (smallest);
 }
+
 int	get_biggest(t_list *lst)
 {
 	int	biggest;
@@ -69,11 +69,11 @@ int	get_biggest(t_list *lst)
 	return (biggest);
 }
 
-void assign_stack(t_list **list, int smallest)
+void	assign_stack(t_list **list, int smallest)
 {
-	t_list			*start;
-	int				nb;
-	static int		cpt;
+	t_list		*start;
+	int			nb;
+	static int	cpt;
 
 	nb = smallest;
 	start = *list;
@@ -82,12 +82,12 @@ void assign_stack(t_list **list, int smallest)
 		while (*list)
 		{
 			if ((*list)->nb == nb)
-				(*list)->pos = cpt++;	
+				(*list)->pos = cpt++;
 			*list = (*list)->next;
 		}
 		*list = start;
 		nb = 2147483647;
-		while(*list)
+		while (*list)
 		{
 			if ((*list)->pos == -1 && (*list)->nb < nb)
 				nb = (*list)->nb;
@@ -96,4 +96,3 @@ void assign_stack(t_list **list, int smallest)
 		*list = start;
 	}
 }
-

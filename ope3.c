@@ -40,7 +40,7 @@ int	is_inverse_sorted(t_list *b)
 	return (1);
 }
 
-int is_soft_invert_sorted(t_list *b, int rdy)
+int	is_soft_invert_sorted(t_list *b, int rdy)
 {
 	int		bik;
 	int		current;
@@ -53,7 +53,7 @@ int is_soft_invert_sorted(t_list *b, int rdy)
 	{
 		if (b->nb == bik)
 			rdy++;
-		if (current < b->next->nb )
+		if (current < b->next->nb)
 			return (0);
 		if (rdy)
 			current = b->next->nb;
@@ -68,5 +68,3 @@ int is_soft_invert_sorted(t_list *b, int rdy)
 	}
 	return (1);
 }
-
-
