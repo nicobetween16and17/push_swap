@@ -56,7 +56,8 @@ void	add_back(t_list **start, t_list *new)
 
 void	free_lst(t_list *start)
 {
-	t_list *next;
+	t_list	*next;
+
 	while (start->next)
 	{
 		next = start->next;
@@ -64,5 +65,4 @@ void	free_lst(t_list *start)
 		start = next;
 	}
 	free(start);
-
 }

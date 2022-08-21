@@ -71,3 +71,32 @@ int	step_one(int *first, t_list *a, int bit, int *step)
 		return (5);
 	return (0);
 }
+
+int	mini_sort(t_list *a, t_list *b)
+{
+	static int	sort;
+
+	if (size(a) > 3 && !sort)
+		if (a->next->pos == 4)
+			return (9);
+	if (size(a) > 3 && !sort)
+		return (5);
+	else if (size(a) == 2 && !sort)
+		return (6);
+	if (is_sorted(a, NULL))
+		sort++;
+	if (sort)
+	{
+		if (b && (b->pos == a->pos - 1 || get_last(a)->pos == b->pos - 1))
+			return (4);
+		if (b && b->next && (b->next->pos == a->pos - 1
+				|| get_last(a)->pos == b->next->pos - 1))
+			return (2);
+		if (b && get_last(a)->pos -1 == b->pos)
+			return (6);
+		return (9);
+	}
+	if (a->next->pos < a->pos)
+		return (1);
+	return (6);
+}

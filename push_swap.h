@@ -44,4 +44,5 @@ int		radix(int pos, int bit);
 int		radix_fin(t_list *a, int bit);
 int		get_dir(t_list *a, int pos, int size, int reset);
 int		step_one(int *first, t_list *a, int bit, int *step);
+int		mini_sort(t_list *a, t_list *b);
 #endif

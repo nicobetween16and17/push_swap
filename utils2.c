@@ -66,3 +66,21 @@ void	assign_stack(t_list **list, int smallest)
 		*list = start;
 	}
 }
+
+int	contain_duplicates(t_list *a)
+{
+	int	current;
+
+	if (a)
+		current = a->nb;
+	else
+		return (0);
+	while (a->next)
+	{
+		if (current == a->next->nb)
+			return (1);
+		current = a->next->nb;
+		a = a->next;
+	}
+	return (0);
+}

@@ -7,5 +7,6 @@
     <mapping directory="$PROJECT_DIR$/fdf/libft" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/push_swap" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/push_swap/Libft" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/push_swap_tester" vcs="Git" />
   </component>
 </project>

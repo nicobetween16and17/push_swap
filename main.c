@@ -95,7 +95,16 @@ int	main(int ac, char **av)
 	if (ac == 1)
 		return (0);
 	a = get_stack(av, 0, 0);
+	if (!a && ft_printf("Error\n"))
+		return (0);
+	if (contain_duplicates(a) && ft_printf("Error\n"))
+		return (0);
 	assign_stack(&a, get_smallest(a));
+	if (size(a) <= 5)
+	{
+		while (!is_sorted(a, b))
+			select_op(mini_sort(a, b), &a, &b);
+	}
 	while (!is_sorted(a, b))
 		select_op(sort(a, b), &a, &b);
 	free_lst(a);
