@@ -56,6 +56,13 @@ void	add_back(t_list **start, t_list *new)
 
 void	free_lst(t_list *start)
 {
+	t_list *next;
 	while (start->next)
-		free(get_last(start));
+	{
+		next = start->next;
+		free(start);
+		start = next;
+	}
+	free(start);
+
 }

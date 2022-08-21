@@ -23,7 +23,6 @@ typedef struct s_list
 	int				pos;
 }	t_list;
 
-int		get_smallest_pos(t_list *lst);
 void	add_front(t_list **start, t_list *new);
 void	add_back(t_list **start, t_list *new);
 void	swap(t_list **list);
@@ -40,10 +39,6 @@ int		is_sorted(t_list *b, t_list *b2);
 int		contain_duplicates(t_list *a);
 int		size(t_list *lst);
 int		get_smallest(t_list *lst);
-int		contain(t_list *a, int n);
-int		is_inverse_sorted(t_list *b);
-int		get_biggest(t_list *lst);
-int		is_soft_sorted(t_list *b, int sens);
 void	assign_stack(t_list **list, int smallest);
 int		radix(int pos, int bit);
 int		radix_fin(t_list *a, int bit);

@@ -98,4 +98,5 @@ int	main(int ac, char **av)
 	assign_stack(&a, get_smallest(a));
 	while (!is_sorted(a, b))
 		select_op(sort(a, b), &a, &b);
+	free_lst(a);
 }
