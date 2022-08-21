@@ -104,18 +104,12 @@ int soft_sorted(t_list *a)
 int radix(int pos, int bit)
 {
 	int res;
-	int bitmax;
 
-	bitmax = bit;
-	res = pos / 2;
-	ft_printf("[%d]\n", res);
 	while (bit)
 	{
 		bit--;
 		res /= 2;
 	}
-	ft_printf("[%d]\n", res);
-	ft_printf("%d au %de bit %d et %d\n", pos, bitmax, res, res % 2);
 	return (res % 2);
 }
 /*************************************************/
@@ -130,6 +124,7 @@ int sort(t_list *a, t_list *b)
 		return (6);
 	if (step)
 	{
+		ft_printf("\e[0;31m-----------------------------------\e[0m\n");
 		if (b)
 			return (4);
 		else
@@ -165,10 +160,13 @@ int main(int ac, char **av)
 	b = NULL;
 	if (ac == 1)
 		return (0);
-	a = get_stack(av, 0, 0);
+	a = get_stack(av, 0, 0);int i = -1;
+	while (++i < 11)
+		ft_printf("%d", radix(521, i));
+	exit(0);
 	assign_stack(&a, get_smallest(a));
 	display_list(a);
-	int i = -1;
+
 	ft_printf("\n");
 	int l = 0;
 	display_pos(a);
