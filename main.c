@@ -14,16 +14,16 @@
 
 void	select_op2(t_list **a, t_list **b, int op)
 {
-	if (op == 8 && ft_printf("rr\n"))
+	if (op == 11 && ft_printf("rrr\n"))
 	{
 		rotate(a);
 		rotate(b);
 	}
-	if (op == 9 && ft_printf("rra\n"))
+	if (op == 6 && ft_printf("ra\n"))
 		reverse_rotate(a);
-	if (op == 10 && ft_printf("rrb\n"))
+	if (op == 7 && ft_printf("rb\n"))
 		reverse_rotate(b);
-	if (op == 11 && ft_printf("rrr\n"))
+	if (op == 8 && ft_printf("rr\n"))
 	{
 		reverse_rotate(a);
 		reverse_rotate(b);
@@ -47,9 +47,9 @@ void	select_op(int op, t_list **a, t_list **b)
 		push(b, a);
 	if (op == 5 && ft_printf("pb\n"))
 		push(a, b);
-	if (op == 6 && ft_printf("ra\n"))
+	if (op == 9 && ft_printf("rra\n"))
 		rotate(a);
-	if (op == 7 && ft_printf("rb\n"))
+	if (op == 10 && ft_printf("rrb\n"))
 		rotate(b);
 	select_op2(a, b, op);
 }

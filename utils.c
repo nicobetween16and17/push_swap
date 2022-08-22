@@ -22,7 +22,7 @@ void	fill_stack(t_list **a, char **av, int i, int j)
 	free(av);
 }
 
-int	check_max(char *s, char *max, int signe)
+static int	check_max(char *s, char *max, int signe)
 {
 	int	i;
 	int	j;
@@ -41,7 +41,7 @@ int	check_max(char *s, char *max, int signe)
 	return (0);
 }
 
-int	correct_input(char *s)
+static int	correct_input(char *s)
 {
 	int	i;
 	int	len;
@@ -49,7 +49,7 @@ int	correct_input(char *s)
 	len = ft_strlen(s);
 	i = -1;
 	while (s && s[++i])
-		if (!ft_isdigit(s[i]))
+		if (!ft_isdigit(s[i]) && s[i] != '-')
 			return (0);
 	if (s && s[0] == '-')
 		len--;
