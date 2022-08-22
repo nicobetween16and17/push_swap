@@ -29,7 +29,6 @@ t_list	*get_last(t_list *start);
 void	free_lst(t_list *start);
 t_list	*get_new(int nb, t_list *next);
 t_list	*get_stack(char **av, int i, int j);
-void	fill_stack(t_list **a, char **av, int i, int j);
 void	rotate(t_list **list);
 void	reverse_rotate(t_list **list);
 void	push(t_list **list, t_list **list2);
